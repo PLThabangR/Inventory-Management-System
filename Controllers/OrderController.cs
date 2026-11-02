@@ -52,6 +52,20 @@ public class OrderController : ControllerBase
     [HttpPost("api/orders")]
     public async Task<ActionResult<OrderResponseDto>> CreateOrder(CreateOrderDto createOrderDto)
     {
+        //Validate inventory items in the order to ensure they exist in the database.
+        var inventoryItemIds = createOrderDto.Items.Select(i => i.InventoryItemId).Distinct().ToList();
+        
+        var existingInventoryItems = await _context.InventoryItems
+            .Where(i => inventoryItemIds.Contains(i.ItemId))
+            .Select(i => i.ItemId)
+            .ToListAsync();
+
+        // Check that every requested inventory item exists.
+        var missingItemIds = inventoryItemIds.Except(existingInventoryItems).ToList();
+        if (missingItemIds.Any())
+        {
+            return BadRequest(new { message = $"The following inventory item IDs do not exist: {string.Join(", ", missingItemIds)}" });
+        }
         // Create a new Order object from the provided DTO and save it to the database.
         var order = new Order
         {
