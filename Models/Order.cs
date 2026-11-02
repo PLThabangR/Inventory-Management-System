@@ -13,6 +13,7 @@ public class Order
 
     public DateTime DatePlaced { get; set; }
 
+// Navigation property for the related OrderItems
     public ICollection<OrderItem> Items { get; set; }
         = new List<OrderItem>();
 

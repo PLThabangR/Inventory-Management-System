@@ -5,7 +5,7 @@ using LogiTrack.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace LogiTrack.Controller;
+namespace LogiTrack.Controllers;
 
 public class InventoryController:ControllerBase
 {
