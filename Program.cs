@@ -12,6 +12,8 @@ using LogiTrack.Service;
 using LogiTrack.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+// Register Mapster mappings.
+MappingConfig.RegisterMappings();
 
 // Register controllers.
 builder.Services.AddControllers();
@@ -96,20 +98,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-<<<<<<< HEAD
 app.MapGet("/", () => "Health check endpoint. The API is running.");
 
 // Authentication must come before authorization.
 app.UseAuthentication();
 app.UseAuthorization();
-=======
-app.MapGet("/", () => "Hello World!");
->>>>>>> d209b0dc510c526f979eb3cd0833b0baf7896f0e
 // Register controller routes.
 app.MapControllers();
 
 app.Run();
-<<<<<<< HEAD
-
-=======
->>>>>>> d209b0dc510c526f979eb3cd0833b0baf7896f0e
