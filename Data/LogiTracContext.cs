@@ -1,9 +1,12 @@
 using LogiTrack.Models;
+using LogiTrack.Models.Auth;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LogiTrack.Data;
 
-public class LogiTrackContext : DbContext
+//We are Extending the IdentityDbContext to include our custom ApplicationUser class, which allows us to manage user authentication and authorization in our application.
+public class LogiTrackContext : IdentityDbContext<ApplicationUser>
 {
     public LogiTrackContext(
         DbContextOptions<LogiTrackContext> options)
@@ -17,6 +20,7 @@ public class LogiTrackContext : DbContext
 
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
 
+//COnfigure the relationships between the Order and OrderItem entities using Fluent API. This method is called when the model is being created and allows us to customize the behavior of the entity framework.
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

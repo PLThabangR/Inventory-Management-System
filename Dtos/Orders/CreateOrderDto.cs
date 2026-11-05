@@ -9,6 +9,6 @@ public class CreateOrderDto
     public string CustomerName { get; set; } = string.Empty;
 
     [Required]
-    [MinLength(1)]
+    [MinLength(1, ErrorMessage = "An order must contain at least one item.")]
     public List<CreateOrderItemDto> Items { get; set; } = [];
 }
