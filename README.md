@@ -92,7 +92,6 @@ Implemented the core application models.
 - Extended `IdentityDbContext<ApplicationUser>`.
 - Configured entity relationships and database mappings.
 - Created and applied database migrations.
-- Seeded sample data for testing and verification.
 
 ### 4. Authentication and Authorization
 
